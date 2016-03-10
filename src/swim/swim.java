@@ -102,6 +102,11 @@ Statement stmt = null;
         textField2.setBounds(120, 160, 220, 25);
 
         jButton1.setText("สมัครว่ายน้ำ");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -141,7 +146,7 @@ Statement stmt = null;
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(120, 220, 40, 25);
+        jComboBox2.setBounds(120, 220, 50, 25);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         getContentPane().add(jComboBox3);
@@ -152,13 +157,11 @@ Statement stmt = null;
         jComboBox4.setBounds(270, 220, 70, 25);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("เดือน");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(160, 220, 40, 17);
+        jLabel6.setBounds(170, 220, 40, 17);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText(" ปี");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(250, 220, 20, 17);
@@ -174,15 +177,23 @@ Statement stmt = null;
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/swimming.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1000, 600);
+        jLabel5.setBounds(0, 0, 1020, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- try
+
+        String codeid1 = textField1.getText();
+        String name1 = textField2.getText();
+        
+        if(codeid1.length()==0 || name1.length()==0){
+            JOptionPane.showMessageDialog(null,"กรอกข้อมูลให้ครบถ้วน");
+            return;
+        }
+        try
      {
          Statement stmt = null; 
          cn c = new cn();
@@ -234,10 +245,14 @@ catch (Exception e){JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMes
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-main m = new main();
+mainadmin m = new mainadmin();
 m.setVisible(true);
 setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

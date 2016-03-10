@@ -328,7 +328,7 @@ Statement stmt = null;
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-main m = new main();
+mainadmin m = new mainadmin();
 m.setVisible(true);
 setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

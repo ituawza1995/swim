@@ -129,7 +129,7 @@ ResultSet rs = cn().executeQuery("Select r_name_user,r_codeid,r_tel,r_age,r_type
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    main m = new main();
+    mainadmin m = new mainadmin();
 m.setVisible(true);
 setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

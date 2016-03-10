@@ -114,7 +114,7 @@ public class play extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        main go = new main();
+        mainadmin go = new mainadmin();
         go.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -125,8 +125,8 @@ public class play extends javax.swing.JFrame {
        
         
         try {
-            connection =  DriverManager.getConnection("jdbc:mysql://192.168.1.1/swim" +
-                    "?user=user&password=123456");
+            connection =  DriverManager.getConnection("jdbc:mysql://localhost/swim" +
+                    "?user=root&password=");
            int u;
             ps = connection.prepareStatement("SELECT * FROM `user` WHERE `u_id` = ?");
             ps.getResultSet();
@@ -164,8 +164,8 @@ else{
        
         
         try {
-            connection =  DriverManager.getConnection("jdbc:mysql://192.168.1.1/swim" +
-                    "?user=user&password=123456");
+            connection =  DriverManager.getConnection("jdbc:mysql://localhost/swim" +
+                    "?user=root&password=");
            int u;
             ps = connection.prepareStatement("SELECT * FROM `user` WHERE `u_id` = ?");
             ps.getResultSet();

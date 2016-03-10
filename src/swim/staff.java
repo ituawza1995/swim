@@ -196,7 +196,7 @@ public class staff extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-main mm = new main();
+mainadmin mm = new mainadmin();
 mm.setVisible(true);
 setVisible(false);
         // TODO add your handling code here:

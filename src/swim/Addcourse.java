@@ -29,6 +29,7 @@ public class Addcourse extends javax.swing.JFrame {
    
   DefaultTableModel model = new DefaultTableModel();
   DefaultTableModel model2 = new DefaultTableModel();
+  DefaultTableModel model3 = new DefaultTableModel();
     public Addcourse() {
         
      
@@ -44,6 +45,7 @@ public class Addcourse extends javax.swing.JFrame {
         
           
      try{
+         
 ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_course,hour_of_course,date_time,name_trainer from course");
     while(rs.next()){
     model.addRow(new Object[]{rs.getString("id_course"),rs.getString("name_course"),rs.getString("age_limit"),rs.getString("hour_course"),rs.getString("hour_of_course"),rs.getString("date_time"),rs.getString("name_trainer")});
@@ -77,9 +79,12 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 600));
+        getContentPane().setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,8 +104,14 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(80, 380, 871, 165);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("รายวิชาสอนการว่ายน้ำ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(80, 350, 190, 22);
 
         jButton1.setText("เพิ่มรายวิชาเรียน");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +119,8 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(380, 300, 105, 41);
 
         jTextField1.setPreferredSize(new java.awt.Dimension(138, 30));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,26 +128,68 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
                 jTextField1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(240, 70, 147, 30);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("รหัสวิชา ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(170, 70, 66, 22);
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(240, 130, 147, 30);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("ชื่อวิชา");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(170, 130, 60, 22);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("จำกัดอายุ");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(160, 200, 70, 22);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-5ขวบ", "7ปีขึ้นไป", " " }));
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(240, 190, 147, 34);
+        getContentPane().add(jSpinField1);
+        jSpinField1.setBounds(710, 60, 141, 30);
+        getContentPane().add(jSpinField2);
+        jSpinField2.setBounds(710, 110, 141, 30);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "วันจันทร์ 17.00-18.00", "วันอังคาร 17.00-18.00", "วันพุธ 17.00-18.00", "วันพฤหัสบดี 17.00-18.00", "วันศุกร์ 17.00-18.00", "วันเสาร์ 17.00-18.00", "วันอาทิตย์ 17.00-18.00" }));
+        getContentPane().add(jComboBox2);
+        jComboBox2.setBounds(710, 170, 141, 35);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("เวลาคอร์สเรียน/วัน");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(580, 60, 110, 22);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("เรียนวัน/ชม");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(600, 110, 90, 22);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("วัน/เวลาเรียน");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(590, 170, 100, 22);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "คณิน", "ทินกร", "บอส", "ฐิติพงศ์" }));
+        getContentPane().add(jComboBox3);
+        jComboBox3.setBounds(710, 220, 140, 35);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("ผู้สอน");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(640, 220, 50, 22);
 
         jButton2.setText("ลบ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -142,104 +197,36 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(510, 300, 114, 41);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(80, 80, 80)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel6)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jSpinField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jSpinField2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(64, 64, 64)
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(34, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(jButton1)
-                .addGap(86, 86, 86)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSpinField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSpinField2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBox3)
-                                .addComponent(jLabel8)))))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/arrow-left-icon.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(10, 10, 72, 72);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(0, 0, 1020, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     try
+     String code = jTextField1.getText();
+     String name = jTextField2.getText();
+     Object sp=jSpinField1.getValue();
+     
+        if(name.length()==0||code.length()==0){
+            JOptionPane.showMessageDialog(null,"กรอกข้อมูลให้ครบถ้วน");
+            return;
+        }
+        
+        try
      {
          Statement stmt = null; 
          cn c = new cn();
@@ -268,6 +255,7 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
 
      }
           try{
+              model.setRowCount(0);
 ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_course,hour_of_course,date_time,name_trainer from course");
     while(rs.next()){
     model.addRow(new Object[]{rs.getString("id_course"),rs.getString("name_course"),rs.getString("age_limit"),rs.getString("hour_course"),rs.getString("hour_of_course"),rs.getString("date_time"),rs.getString("name_trainer")});
@@ -311,8 +299,18 @@ ResultSet rs = cnuser().executeQuery("Select id_course,name_course,age_limit,hou
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+ try{
+    int i=jTable1.getSelectedRow();deplace(i);
+}
+catch (Exception e){JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());}       // TODO add your handling code here:
+             // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+mainteacher mm = new mainteacher();
+mm.setVisible(true);
+setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     
     public static void main(String args[]) {
@@ -323,6 +321,14 @@ ResultSet rs = cnuser().executeQuery("Select id_course,name_course,age_limit,hou
             }
         });
     }
+    private void deplace(int i){
+    try{
+    jTextField1.setText(model.getValueAt(i,0).toString());
+   // jTextField4.setText(model.getValueAt(i,4).toString());
+
+    }catch (Exception e){System.err.println(e);
+    JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());
+    }}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -331,6 +337,7 @@ ResultSet rs = cnuser().executeQuery("Select id_course,name_course,age_limit,hou
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -338,6 +345,7 @@ ResultSet rs = cnuser().executeQuery("Select id_course,name_course,age_limit,hou
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.components.JSpinField jSpinField1;
     private com.toedter.components.JSpinField jSpinField2;
