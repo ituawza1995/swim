@@ -38,7 +38,7 @@ public class Regiscourse extends javax.swing.JFrame {
         model.addColumn("ชื่อ-สกุล");
         model.addColumn("บัตรประชาชน");
         model.addColumn("เบอร์โทรศัพท์");
-        model.addColumn("อายุ");
+        model.addColumn("วันเกิด");
         model.addColumn("ประเภท");
         model.addColumn("คอสเรียน");
        
@@ -46,8 +46,8 @@ public class Regiscourse extends javax.swing.JFrame {
      try{
 ResultSet rs = cnuser().executeQuery("Select * from registerstudy");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("r_id"),rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("r_age"),rs.getString("r_type")
-    ,rs.getString("r_coures"),rs.getString("r_startlern"),rs.getString("r_endlern")});
+    model.addRow(new Object[]{rs.getString("r_id"),rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("r_birthday"),rs.getString("r_type")
+    ,rs.getString("r_coures")});
     }
     }catch(Exception e){System.err.println(e);}
    jTable1.setModel(model);
@@ -97,10 +97,6 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         jLabel7 = new javax.swing.JLabel();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -247,24 +243,6 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         getContentPane().add(jDateChooser4);
         jDateChooser4.setBounds(570, 150, 200, 30);
 
-        jDateChooser1.setDateFormatString("dd/MM/yyyy");
-        jDateChooser1.setMaxSelectableDate(new java.util.Date(32503658474000L));
-        jDateChooser1.setMinSelectableDate(new java.util.Date(10413770474000L));
-        getContentPane().add(jDateChooser1);
-        jDateChooser1.setBounds(570, 200, 200, 30);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("วันที่สิ้นสุดการเรียน");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(430, 200, 130, 17);
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("อายุ");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(210, 210, 23, 17);
-        getContentPane().add(jSpinner1);
-        jSpinner1.setBounds(260, 200, 70, 30);
-
         jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\tinnakorn\\Documents\\NetBeansProjects\\swim\\src\\swim\\img\\swimming.png")); // NOI18N
         getContentPane().add(jLabel9);
         jLabel9.setBounds(0, 0, 1020, 600);
@@ -273,11 +251,22 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       try
+       String name1 = jTextField1.getText();
+        String code1 = jTextField2.getText();
+        String tel1 = jTextField3.getText();
+        //String age = (String) jComboBox1.getSelectedItem();
+        String type1 = (String) jComboBox3.getSelectedItem();
+        String course1 = (String) jComboBox2.getSelectedItem();
+        
+        if(name1.length()==0||code1.length()==0||tel1.length()==0||type1.length()==0||course1.length()==0){
+        JOptionPane.showMessageDialog(null,"กรุณากรอกข้อมูลให้ครบถ้วน");
+        return;
+        }
+        
+        try
      {
          SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
      String s = sdf.format(jDateChooser2.getDate());
-     String e = sdf.format(jDateChooser1.getDate());
      
          Statement stmt = null; 
          cn c = new cn();
@@ -289,9 +278,8 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         //String age = (String) jComboBox1.getSelectedItem();
         String type = (String) jComboBox3.getSelectedItem();
         String course = (String) jComboBox2.getSelectedItem();
-        int age = (Integer)jSpinner1.getValue();
        
-      String result = "INSERT INTO registerstudy(r_name_user,r_codeid,r_tel,r_age,r_type,r_coures,r_startlern,r_endlern)VALUES('"+name+"','"+code+"','"+tel+"','"+age+"','"+type+"','"+course+"','"+s+"','"+e+"')";
+      String result = "INSERT INTO registerstudy(r_name_user,r_codeid,r_tel,r_birthday,r_type,r_coures)VALUES('"+name+"','"+code+"','"+tel+"','"+s+"','"+type+"','"+course+"')";
        stmt.executeUpdate(result);
 
 
@@ -311,8 +299,8 @@ Statement stmt = null;
     //stm = conn.obtenirconnexion().createStatement();
     ResultSet rs = cnuser().executeQuery("Select * from registerstudy");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("r_id"),rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("r_age"),rs.getString("r_type")
-    ,rs.getString("r_coures"),rs.getString("r_startlern"),rs.getString("r_endlern")}
+    model.addRow(new Object[]{rs.getString("r_id"),rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("r_birthday"),rs.getString("r_type")
+    ,rs.getString("r_coures")}
     
     );}
     }catch(Exception e){System.err.println(e);}
@@ -371,13 +359,10 @@ setVisible(false);// TODO add your handling code here:
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -388,7 +373,6 @@ setVisible(false);// TODO add your handling code here:
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;

@@ -22,13 +22,13 @@ import static swim.cn.cnuser;
  *
  * @author tinnakorn
  */
-public class mainteacher extends javax.swing.JFrame {
+public class pay extends javax.swing.JFrame {
 
     /**
      * Creates new form main1
      */
     DefaultTableModel model = new DefaultTableModel();
-    public mainteacher() {
+    public pay() {
         initComponents();
         
         
@@ -55,16 +55,16 @@ public class mainteacher extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("เพิ่มคอร์สเรียน");
+        jLabel4.setText("ชำระเงินค่าว่ายน้ำ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(110, 280, 106, 22);
+        jLabel4.setBounds(100, 280, 140, 22);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("รายละเอียดการสมัครเรียน");
+        jLabel7.setText("ชำระเงินค่าคอร์สเรียนว่ายน้ำ");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(340, 280, 190, 22);
+        jLabel7.setBounds(340, 280, 210, 22);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/net-vibes-icon.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/Budget-icon.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -73,14 +73,14 @@ public class mainteacher extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(100, 140, 130, 128);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/aim-icon.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/dollar-icon.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
             }
         });
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(370, 140, 130, 120);
+        jLabel5.setBounds(370, 140, 140, 128);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/logout.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -94,7 +94,7 @@ public class mainteacher extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
         jLabel9.setName(""); // NOI18N
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(0, 0, 1020, 600);
+        jLabel9.setBounds(0, 0, 600, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,14 +134,30 @@ setVisible(false);// TODO add your handling code here:
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainteacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainteacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainteacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainteacher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -162,7 +178,7 @@ setVisible(false);// TODO add your handling code here:
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainteacher().setVisible(true);
+                new pay().setVisible(true);
             }
         });
     }

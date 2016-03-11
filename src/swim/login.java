@@ -111,7 +111,18 @@ public class login extends javax.swing.JFrame {
 Connection connection;
         PreparedStatement ps;
        
+        String user= jTextField1.getText();
+        String pass1 = jPasswordField1.getText();
         
+        if(user.length()==0){
+            JOptionPane.showMessageDialog(null,"กรุณากรอกชื่อผู้ใช้");
+        return;
+        }
+        else if(pass1.length()==0)
+        {
+        JOptionPane.showMessageDialog(null,"กรุณากรอกรหัสผ่าน");
+        return;
+        }
         try {
             connection =  DriverManager.getConnection("jdbc:mysql://localhost/swim" +
                     "?user=root&password=");
