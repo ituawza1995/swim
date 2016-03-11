@@ -211,7 +211,7 @@ jLabel4.setText(String.valueOf(sum2));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-mainadmin m = new mainadmin();
+staffmain m = new staffmain();
 m.setVisible(true);
 setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

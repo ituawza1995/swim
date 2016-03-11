@@ -135,7 +135,7 @@ Connection connection;
             result.next();
             u=result.getInt("status");
             if(u==2){
-       mainadmin st = new mainadmin();
+       staffmain st = new staffmain();
        st.setVisible(true);
        setVisible(false);   
          }
@@ -145,7 +145,7 @@ Connection connection;
        setVisible(false);   
          }
             else if(u==4){
-       mainteacher t = new mainteacher();
+       teachermain t = new teachermain();
        t.setVisible(true);
        setVisible(false);   
          }
