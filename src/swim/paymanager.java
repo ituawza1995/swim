@@ -250,7 +250,13 @@ JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
     }
     }catch(Exception e){System.err.println(e);}
     jTable2.setModel(model);        // TODO add your handling code here:
-                                           // TODO add your handling code here:
+          try{
+          paymanager pp = new paymanager();
+          pp.setVisible(true);
+          setVisible(false);
+          }
+          catch(Exception e){
+          }// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked

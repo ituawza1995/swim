@@ -103,6 +103,7 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
@@ -291,6 +292,12 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         getContentPane().add(jTextField4);
         jTextField4.setBounds(610, 220, 220, 30);
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel14.setText("* กรอกได้ทั้งรหัสประชาชนและรหัสนักศึกษา");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(20, 430, 330, 22);
+
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("ค้นหาจากรหัสบัตร");
         getContentPane().add(jButton3);
@@ -358,7 +365,7 @@ JOptionPane.showMessageDialog(null,"ลงเรียนเรียบร้อยแล้ว");
 
      }
         try{
-        staffmain m = new staffmain();
+        paymanagerstudy m = new paymanagerstudy();
 m.setVisible(true);
 setVisible(false); 
         }
@@ -425,20 +432,37 @@ catch (Exception e){JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMes
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
- try
-     {
-      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd", Locale.getDefault());
-     String s1 = sdf.format(jDateChooser5.getDate());
-         Statement stmt = null; 
-         cn c = new cn();
-         stmt = c.cn();
-           String name1 = jTextField1.getText();
+String name1 = jTextField1.getText();
         String code1 = jTextField2.getText();
         String tel1 = jTextField3.getText();
         //String age = (String) jComboBox1.getSelectedItem();
         String type1 = (String) jComboBox3.getSelectedItem();
         String course1 = (String) jComboBox2.getSelectedItem();
         String tea1 = jLabel11.getText();
+        
+        if(name1.length()==0||code1.length()==0||tel1.length()==0||type1.length()==0||course1.length()==0||tea1.length()==0){
+        JOptionPane.showMessageDialog(null,"กรุณากรอกข้อมูลให้ครบถ้วน");
+        return;
+        }
+        else if(code1.length() != 13){
+        JOptionPane.showMessageDialog(null,"กรุณากรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง");
+        return;
+        }
+        else if(tel1.length() != 10){
+        JOptionPane.showMessageDialog(null,"กรุณากรอกหมายเลขโทรศัพท์ให้ถูกต้อง");
+        return;
+        }
+        else if(jDateChooser5.getDate() == null){
+        JOptionPane.showMessageDialog(null,"กรุณาระบุวันเกิด");
+        return;
+        }
+        try
+     {
+      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd", Locale.getDefault());
+     String s1 = sdf.format(jDateChooser5.getDate());
+         Statement stmt = null; 
+         cn c = new cn();
+         stmt = c.cn();
       String result2 = "UPDATE registerstudy SET r_name_user='"+name1+"',r_name_trainer='"+tea1+"',r_codeid='"+code1+"',r_tel='"+tel1+"',r_birthday='"+s1+"',r_type='"+type1+"',r_coures='"+course1+"' where r_codeid = '"+code1+"'";
         stmt.executeUpdate(result2);
 
@@ -544,6 +568,7 @@ setVisible(false);// TODO add your handling code here:
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

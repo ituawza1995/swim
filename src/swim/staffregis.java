@@ -86,6 +86,7 @@ Statement stmt = null;
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,6 +207,12 @@ Statement stmt = null;
         getContentPane().add(jButton3);
         jButton3.setBounds(120, 370, 220, 30);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("* กรอกได้ทั้งรหัสประชาชนและรหัสนักศึกษา");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(10, 20, 330, 22);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
@@ -300,7 +307,22 @@ setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-try
+String codeid1 = textField1.getText();
+        String name2= textField2.getText();
+        String str="0123456789" ;
+        if(codeid1.length()==0 || name2.length()==0){
+            JOptionPane.showMessageDialog(null,"กรอกข้อมูลให้ครบถ้วน");
+            return;
+        }
+        else if (jDateChooser5.getDate() == null) {
+   JOptionPane.showMessageDialog(null, "กรุณาระบุวันเกิดด้วยนะ จ้ะ");
+   return;
+}
+        else if(codeid1.length() != 13 & codeid1 != str & codeid1.length() != 9){
+         JOptionPane.showMessageDialog(null,"กรอกเลขบัตรประชาชน 13 หลัก หรือ\n รหัสนักศึกษา 10 หลักให้ถูกต้อง");
+            return;
+        }
+        try
      {
       SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd", Locale.getDefault());
      String s1 = sdf.format(jDateChooser5.getDate());
@@ -344,7 +366,14 @@ Statement stmt = null;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-try{
+String codeid1 = textField1.getText();
+        String name1 = textField2.getText();
+        String str="0123456789" ;
+        if(codeid1.length()==0 || name1.length()==0){
+            JOptionPane.showMessageDialog(null,"โปรดเลือกรายการที่จะลบ");
+            return;
+        }
+        try{
                 Statement stmt = null; 
             cn c = new cn();
             stmt = c.cn();   
@@ -435,6 +464,7 @@ Statement stmt = null;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private java.awt.TextField textField1;

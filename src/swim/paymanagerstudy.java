@@ -235,7 +235,14 @@ JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
     }
     
     }catch(Exception e){System.err.println(e);}
-    jTable2.setModel(model);        // TODO add your handling code here:
+    jTable2.setModel(model); 
+     try{
+          paymanagerstudy pp = new paymanagerstudy();
+          pp.setVisible(true);
+          setVisible(false);
+          }
+          catch(Exception e){
+          }// TODO add your handling code here:
                                            // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

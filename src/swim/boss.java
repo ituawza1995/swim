@@ -132,7 +132,7 @@ jLabel4.setText(String.valueOf(sum2));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(840, 90, 50, 30);
+        jLabel1.setBounds(850, 90, 70, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,7 +144,7 @@ jLabel4.setText(String.valueOf(sum2));
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("บาท");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(900, 90, 44, 29);
+        jLabel3.setBounds(920, 90, 44, 29);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
