@@ -34,6 +34,7 @@ public class staffregiscourse extends javax.swing.JFrame {
     public staffregiscourse() {
         initComponents();
           
+        faidcombobox();
          model.addColumn("No.");
         model.addColumn("ชื่อ-สกุล");
         model.addColumn("บัตรประชาชน");
@@ -144,7 +145,6 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         jScrollPane1.setBounds(20, 390, 510, 140);
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Basic", "FREESTYLE", "BACKSTROKE", "BUTTERFLY", "BREASTSTROKE" }));
         jComboBox2.setToolTipText("");
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -165,9 +165,9 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         jLabel5.setBounds(480, 90, 60, 17);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("วันที่เริ่มเรียน");
+        jLabel6.setText("วันเกิด");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(461, 141, 73, 25);
+        jLabel6.setBounds(500, 150, 40, 25);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("ประภท");
@@ -298,6 +298,19 @@ Statement stmt = null;
     jTable1.setModel(model);                                
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void faidcombobox(){
+    try{
+        ResultSet rs = cnuser().executeQuery("Select * from course");
+        while(rs.next()){
+            String item1= rs.getString("name_course");
+            jComboBox2.addItem(item1);
+        }
+        
+    }
+    catch(Exception e){
+    
+    }
+    }
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed

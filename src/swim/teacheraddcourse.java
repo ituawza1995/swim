@@ -39,7 +39,7 @@ public class teacheraddcourse extends javax.swing.JFrame {
         model.addColumn("ชื่อวิชา");
         model.addColumn("จำกัดอายุ");
         model.addColumn("เวลาเรียนทั้งหมด");
-        model.addColumn("เรียน/ชม.");
+        model.addColumn("เรียน/ชม.ต่อวัน");
         model.addColumn("วันเวลาเรียน");
         model.addColumn("ผู้สอน");
         
@@ -76,13 +76,14 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1024, 600));
         getContentPane().setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -159,20 +160,25 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         jSpinField2.setBounds(710, 110, 141, 30);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "วันจันทร์ 17.00-18.00", "วันอังคาร 17.00-18.00", "วันพุธ 17.00-18.00", "วันพฤหัสบดี 17.00-18.00", "วันศุกร์ 17.00-18.00", "วันเสาร์ 17.00-18.00", "วันอาทิตย์ 17.00-18.00" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(710, 170, 141, 35);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("เวลาคอร์สเรียน/วัน");
+        jLabel5.setText("เรียนกี่วัน/ต่อคอร์ส");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(580, 60, 110, 22);
+        jLabel5.setBounds(554, 60, 140, 22);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("เรียนวัน/ชม");
+        jLabel6.setText("เรียนกี่ชม/ต่อวัน");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(600, 110, 90, 22);
+        jLabel6.setBounds(570, 110, 130, 22);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,15 +186,11 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         getContentPane().add(jLabel7);
         jLabel7.setBounds(590, 170, 100, 22);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "คณิน", "ทินกร", "บอส", "ฐิติพงศ์" }));
-        getContentPane().add(jComboBox3);
-        jComboBox3.setBounds(710, 220, 140, 35);
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("ผู้สอน");
+        jLabel8.setText("ชื่อผู้สอนผู้สอน");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(640, 220, 50, 22);
+        jLabel8.setBounds(580, 220, 110, 22);
 
         jButton2.setText("ลบ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -207,6 +209,8 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         });
         getContentPane().add(jLabel10);
         jLabel10.setBounds(10, 10, 72, 72);
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(710, 220, 140, 35);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
         getContentPane().add(jLabel9);
@@ -218,13 +222,24 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      String code = jTextField1.getText();
      String name = jTextField2.getText();
-     Object sp=jSpinField1.getValue();
+     String nametea = jTextField3.getText();
      
         if(name.length()==0||code.length()==0){
             JOptionPane.showMessageDialog(null,"กรอกข้อมูลให้ครบถ้วน");
             return;
         }
-        
+        else if (jSpinField1.getValue() == 0){
+        JOptionPane.showMessageDialog(null,"กรุณาระบุเวลาเรียนทั้งหมดในคอร์สนี้");
+            return;
+        }
+         else if (jSpinField2.getValue() == 0){
+        JOptionPane.showMessageDialog(null,"กรุณาระบุเวลาเรียน");
+            return;
+        }
+        else if (nametea.length() == 0){
+        JOptionPane.showMessageDialog(null,"กรุณาระบุชื่อผู้สอน");
+            return;
+        }
         try
      {
          Statement stmt = null; 
@@ -239,7 +254,7 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
              int hour_course = jSpinField1.getValue();
              int hour_of_course= jSpinField2.getValue();
              String date_time = (String)jComboBox2.getSelectedItem();
-             String name_trainer =(String) jComboBox3.getSelectedItem();
+             String name_trainer =jTextField3.getText();
              
              String result = "INSERT INTO course(id_course,name_course,age_limit,hour_course,hour_of_course,date_time,name_trainer)VALUES('"+id_course+"','"+name_course+"','"+age_limit+"','"+hour_course+"','"+hour_of_course+"','"+date_time+"','"+name_trainer+"')";
        stmt.executeUpdate(result);
@@ -311,6 +326,10 @@ mm.setVisible(true);
 setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -334,7 +353,6 @@ setVisible(false);// TODO add your handling code here:
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -351,6 +369,7 @@ setVisible(false);// TODO add your handling code here:
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
 

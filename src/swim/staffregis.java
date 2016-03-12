@@ -31,7 +31,7 @@ public class staffregis extends javax.swing.JFrame {
     /**
      * Creates new form test
      */
-    
+    String a = "  ปี";
     DefaultTableModel model = new DefaultTableModel();
     Calendar c = Calendar.getInstance();
     
@@ -41,14 +41,15 @@ public class staffregis extends javax.swing.JFrame {
          model.addColumn("รหัสบัตรประชาชน");
     model.addColumn("ชื่อ");
     model.addColumn("ประเภทผู้ใช้");
+    model.addColumn("อายุ");
     model.addColumn("สถานะ");
       
      try{
  Connection con = null;
 Statement stmt = null;        
- ResultSet rs = cnuser().executeQuery("Select * from user");
+ ResultSet rs = cnuser().executeQuery("Select u_id,u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type,status from user");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("status")});
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age")+a,rs.getString("status")});
     }
     }catch(Exception e){System.err.println(e);}
     jTable1.setModel(model);
@@ -74,8 +75,8 @@ Statement stmt = null;
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,6 +101,12 @@ Statement stmt = null;
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        }
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(370, 130, 600, 275);
@@ -157,20 +164,20 @@ Statement stmt = null;
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(120, 190, 220, 25);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/home-icon.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(881, 27, 93, 69);
-
         jDateChooser5.setDateFormatString("dd/MM/yyyy");
-        jDateChooser5.setMaxSelectableDate(new java.util.Date(253370743315000L));
+        jDateChooser5.setMaxSelectableDate(new java.util.Date(18587037715000L));
         jDateChooser5.setMinSelectableDate(new java.util.Date(-62135791085000L));
         getContentPane().add(jDateChooser5);
         jDateChooser5.setBounds(120, 220, 220, 30);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/home-icon.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(910, 20, 60, 60);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,7 +198,11 @@ Statement stmt = null;
             JOptionPane.showMessageDialog(null,"กรอกข้อมูลให้ครบถ้วน");
             return;
         }
-        else if(codeid1.length() < 13 || codeid1.length() >13 || codeid1 != str){
+        else if (jDateChooser5.getDate() == null) {
+   JOptionPane.showMessageDialog(null, "กรุณาระบุวันเกิดด้วยนะ จ้ะ");
+   return;
+}
+        else if(codeid1.length() != 13 & codeid1 != str){
          JOptionPane.showMessageDialog(null,"กรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง");
             return;
         }
@@ -203,7 +214,7 @@ Statement stmt = null;
 
          String codeid = textField1.getText();
         String name = textField2.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd", Locale.getDefault());
      String birth = sdf.format(jDateChooser5.getDate());
         
       String result = "INSERT INTO user(u_id,u_name,u_type,u_birthday)VALUES('"+codeid+"','"+name+"','"+(String)jComboBox1.getSelectedItem()+"','"+birth+"')";
@@ -227,9 +238,9 @@ JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
                 
     model.setRowCount(0);
     //stm = conn.obtenirconnexion().createStatement();
-    ResultSet rs = cnuser().executeQuery("Select * from user");
+    ResultSet rs = cnuser().executeQuery("Select u_id,u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type,status from user");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("status")});
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age"),rs.getString("status")});
     }
     }catch(Exception e){System.err.println(e);}
     jTable1.setModel(model);        // TODO add your handling code here:
@@ -247,15 +258,15 @@ catch (Exception e){JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMes
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-staffmain m = new staffmain();
-m.setVisible(true);
-setVisible(false);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+staffmain m = new staffmain();
+m.setVisible(true);
+setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -311,7 +322,6 @@ setVisible(false);// TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser5;
     private javax.swing.JLabel jLabel1;
@@ -319,6 +329,7 @@ setVisible(false);// TODO add your handling code here:
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private java.awt.TextField textField1;

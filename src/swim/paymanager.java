@@ -194,7 +194,7 @@ try
         String date = jLabel5.getText();
         String pay = textField3.getText();
       String result = "INSERT INTO pay(p_codeuser,p_datetime,p_money)VALUES('"+codeid+"','"+date+"','"+pay+"')";
-      String result2 = "UPDATE user SET status='จ่ายแล้ว' where u_id = '"+codeid+"'";
+      String result2 = "UPDATE user SET status='Active' where u_id = '"+codeid+"'";
        stmt.executeUpdate(result);
         stmt.executeUpdate(result2);
 
