@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2016 at 02:08 PM
+-- Generation Time: Mar 12, 2016 at 06:25 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -35,14 +35,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `hour_of_course` int(3) NOT NULL,
   `date_time` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `name_trainer` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `course`
---
-
-INSERT INTO `course` (`c_id`, `id_course`, `name_course`, `age_limit`, `hour_course`, `hour_of_course`, `date_time`, `name_trainer`) VALUES
-(1, 1001, 'Basic', '7ปี ขึ้นไป', '8HR', 1, 'ทุกวันจันทร์ 17.00-18.00', 'ทินกร');
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -52,17 +45,11 @@ INSERT INTO `course` (`c_id`, `id_course`, `name_course`, `age_limit`, `hour_cou
 
 CREATE TABLE IF NOT EXISTS `pay` (
   `p_id` int(11) NOT NULL,
+  `p_name` varchar(30) NOT NULL,
   `p_codeuser` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `p_datetime` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `p_money` int(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pay`
---
-
-INSERT INTO `pay` (`p_id`, `p_codeuser`, `p_datetime`, `p_money`) VALUES
-(26, '1720900196795', '10-03-2559', 20);
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -82,24 +69,15 @@ CREATE TABLE IF NOT EXISTS `play` (
 --
 
 CREATE TABLE IF NOT EXISTS `registerstudy` (
-  `r_id` int(11) NOT NULL,
   `r_name_user` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `r_name_trainer` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `r_codeid` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `r_tel` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `r_age` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `r_birthday` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `r_type` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `r_coures` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `r_startlern` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `r_endlern` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `registerstudy`
---
-
-INSERT INTO `registerstudy` (`r_id`, `r_name_user`, `r_codeid`, `r_tel`, `r_age`, `r_type`, `r_coures`, `r_startlern`, `r_endlern`) VALUES
-(1, 'ทินกร', '1730500107159', '0988888888', '21', 'นักศึกษา', 'Basic', '29/03/2559', '30/03/2559'),
-(2, 'คณิน', '1234567890123', '0986666666', '21', 'นักศึกษา', 'Basic', '11-03-2016', '25-03-2016');
+  `status` int(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -121,9 +99,9 @@ CREATE TABLE IF NOT EXISTS `staff` (
 --
 
 INSERT INTO `staff` (`st_id`, `st_name`, `st_telephone`, `st_login`, `st_pass`, `status`) VALUES
-(1, 'ss', '78787878', 'admin', 'admin', '2'),
-(2, 'boss', '0903333434', 'boss', 'boss', '3'),
-(3, 'teacher', '098474844', 'teacher', 'teacher', '4');
+(1, 'Tinnakorn', '78787878', 'admin', 'admin', '2'),
+(2, 'Tinnakorn', '0903333434', 'boss', 'boss', '3'),
+(3, 'Tinnakorn', '098474844', 'teacher', 'teacher', '4');
 
 -- --------------------------------------------------------
 
@@ -149,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `u_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `u_type` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `u_birthday` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ยังไม่จ่าย'
+  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -157,7 +135,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`u_id`, `u_name`, `u_type`, `u_birthday`, `status`) VALUES
-('1720900196795', 'tinnakorn', 'นักเรียน', '14/05/2538', 'จ่ายแล้ว');
+('1720900196795', 'ทินกร', 'นักศึกษา', '95-05-14', '2'),
+('2343434343434', '33333', 'บุคคลทั่วไป', '06-03-12', '2'),
+('2348749489893', 'tou', 'นักศึกษา', '03-03-17', '2'),
+('4444444444443', 'porn', 'นักศึกษา', '05-03-21', '2'),
+('564259122', 'tinnakorn', 'นักศึกษา', '95-03-18', '2');
 
 --
 -- Indexes for dumped tables
@@ -185,7 +167,7 @@ ALTER TABLE `play`
 -- Indexes for table `registerstudy`
 --
 ALTER TABLE `registerstudy`
-  ADD PRIMARY KEY (`r_id`);
+  ADD PRIMARY KEY (`r_codeid`);
 
 --
 -- Indexes for table `staff`
@@ -213,22 +195,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `play`
 --
 ALTER TABLE `play`
   MODIFY `numberr` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `registerstudy`
---
-ALTER TABLE `registerstudy`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `staff`
 --
