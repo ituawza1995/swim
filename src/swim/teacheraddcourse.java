@@ -81,6 +81,7 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         jLabel10 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -113,6 +114,7 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         getContentPane().add(jLabel1);
         jLabel1.setBounds(80, 350, 190, 22);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("เพิ่มรายวิชาเรียน");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +122,7 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(380, 300, 105, 41);
+        jButton1.setBounds(355, 300, 130, 41);
 
         jTextField1.setPreferredSize(new java.awt.Dimension(138, 30));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +194,7 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         getContentPane().add(jLabel8);
         jLabel8.setBounds(580, 220, 110, 22);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("ลบ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,6 +218,8 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
         getContentPane().add(jLabel9);
         jLabel9.setBounds(0, 0, 1020, 600);
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(60, 270, 0, 0);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -292,11 +297,8 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
                 Statement stmt = null; 
             cn c = new cn();
             stmt = c.cn();   
-         
-         if(jTextField1.getText().length()!=0){
-             stmt.executeUpdate("Delete From course where id_course="+jTextField1.getText());            
-            JOptionPane.showMessageDialog(null,"ลบข้อมูล");            
-         }  
+             stmt.executeUpdate("Delete From course where id_course="+jLabel11.getText());            
+            JOptionPane.showMessageDialog(null,"ลบข้อมูล");         
      }catch(Exception e){JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage());}
                   
           try{
@@ -341,7 +343,7 @@ setVisible(false);// TODO add your handling code here:
     }
     private void deplace(int i){
     try{
-    jTextField1.setText(model.getValueAt(i,0).toString());
+    jLabel11.setText(model.getValueAt(i,0).toString());
    // jTextField4.setText(model.getValueAt(i,4).toString());
 
     }catch (Exception e){System.err.println(e);
@@ -355,6 +357,7 @@ setVisible(false);// TODO add your handling code here:
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

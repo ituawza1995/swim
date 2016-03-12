@@ -71,7 +71,7 @@ public class staffmain extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(300, 290, 124, 22);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/Male-user-add-icon.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457822783_user_add.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -80,7 +80,7 @@ public class staffmain extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(80, 150, 128, 128);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/Male-user-edit-icon.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457822783_edit.png"))); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -98,7 +98,7 @@ public class staffmain extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(640, 20, 32, 32);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/dollar-icon.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457822783_add-buy-plus-shopping-cart.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);

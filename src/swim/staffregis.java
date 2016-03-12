@@ -49,7 +49,14 @@ public class staffregis extends javax.swing.JFrame {
 Statement stmt = null;        
  ResultSet rs = cnuser().executeQuery("Select u_id,u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type,status from user");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age")+a,rs.getString("status")});
+        String aa = null;
+        if(rs.getInt("status")==1){
+        aa="No Active";
+        }
+        else if(rs.getInt("status")==2){
+        aa="Active";
+        }
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age")+a,aa});
     }
     }catch(Exception e){System.err.println(e);}
     jTable1.setModel(model);
@@ -77,6 +84,8 @@ Statement stmt = null;
         jComboBox1 = new javax.swing.JComboBox<>();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -129,7 +138,7 @@ Statement stmt = null;
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(120, 310, 220, 30);
+        jButton1.setBounds(120, 290, 220, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,6 +188,24 @@ Statement stmt = null;
         getContentPane().add(jLabel6);
         jLabel6.setBounds(910, 20, 60, 60);
 
+        jButton2.setText("UPDATE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(120, 330, 220, 30);
+
+        jButton3.setText("DELETE");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(120, 370, 220, 30);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
@@ -202,8 +229,8 @@ Statement stmt = null;
    JOptionPane.showMessageDialog(null, "กรุณาระบุวันเกิดด้วยนะ จ้ะ");
    return;
 }
-        else if(codeid1.length() != 13 & codeid1 != str){
-         JOptionPane.showMessageDialog(null,"กรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง");
+        else if(codeid1.length() != 13 & codeid1 != str & codeid1.length() != 9){
+         JOptionPane.showMessageDialog(null,"กรอกเลขบัตรประชาชน 13 หลัก หรือ\n รหัสนักศึกษา 10 หลักให้ถูกต้อง");
             return;
         }
         try
@@ -235,23 +262,27 @@ JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
        
        
             try{
-                
-    model.setRowCount(0);
-    //stm = conn.obtenirconnexion().createStatement();
-    ResultSet rs = cnuser().executeQuery("Select u_id,u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type,status from user");
-    while(rs.next()){
-    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age"),rs.getString("status")});
-    }
-    }catch(Exception e){System.err.println(e);}
-    jTable1.setModel(model);        // TODO add your handling code here:
+               paymanager pp = new paymanager();
+               pp.setVisible(true);
+               setVisible(false);
+//    model.setRowCount(0);
+//    //stm = conn.obtenirconnexion().createStatement();
+//    ResultSet rs = cnuser().executeQuery("Select u_id,u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type,status from user");
+//    while(rs.next()){
+//    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age"),rs.getString("status")});
+//    }
+//    }catch(Exception e){System.err.println(e);}
+//    jTable1.setModel(model); 
+            }
+catch(Exception e){System.err.println(e);}// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-/*try{
+try{
     int i=jTable1.getSelectedRow();deplace(i);
 }
 catch (Exception e){JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());}// TODO add your handling code here:
-   */        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -267,6 +298,78 @@ staffmain m = new staffmain();
 m.setVisible(true);
 setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+try
+     {
+      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd", Locale.getDefault());
+     String s1 = sdf.format(jDateChooser5.getDate());
+         Statement stmt = null; 
+         cn c = new cn();
+         stmt = c.cn();
+           String code1 = textField1.getText();
+        String name1 = textField2.getText();
+        //String age = (String) jComboBox1.getSelectedItem();
+        String type1 = (String) jComboBox1.getSelectedItem();
+      String result2 = "UPDATE user SET u_id='"+code1+"',u_name='"+name1+"',u_type='"+type1+"',u_birthday='"+s1+"' where u_id = '"+code1+"'";
+        stmt.executeUpdate(result2);
+
+
+JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
+
+     }
+     catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
+
+     }   
+ 
+try{
+    model.setRowCount(0);
+ Connection con = null;
+Statement stmt = null;        
+ ResultSet rs = cnuser().executeQuery("Select u_id,u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type,status from user");
+    while(rs.next()){
+        String aa = null;
+        if(rs.getInt("status")==1){
+        aa="No Active";
+        }
+        else if(rs.getInt("status")==2){
+        aa="Active";
+        }
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age")+a,aa});
+    }
+    }catch(Exception e){System.err.println(e);}
+    jTable1.setModel(model);       // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+try{
+                Statement stmt = null; 
+            cn c = new cn();
+            stmt = c.cn();   
+             stmt.executeUpdate("Delete From user where u_id="+textField1.getText());            
+            JOptionPane.showMessageDialog(null,"ลบข้อมูลเรียบร้อย");         
+     }catch(Exception e){JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage());}
+                  
+          try{
+    model.setRowCount(0);
+ Connection con = null;
+Statement stmt = null;        
+ ResultSet rs = cnuser().executeQuery("Select u_id,u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type,status from user");
+    while(rs.next()){
+        String aa = null;
+        if(rs.getInt("status")==1){
+        aa="No Active";
+        }
+        else if(rs.getInt("status")==2){
+        aa="Active";
+        }
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("age")+a,aa});
+    }
+    }catch(Exception e){System.err.println(e);}
+    jTable1.setModel(model);           // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,19 +412,21 @@ setVisible(false);        // TODO add your handling code here:
             }
         });
     }
-    /*private void deplace(int i){
+    private void deplace(int i){
     try{
     textField1.setText(model.getValueAt(i,0).toString());
     textField2.setText(model.getValueAt(i,1).toString());
-    textField5.setText(model.getValueAt(i,3).toString());
+    jComboBox1.setSelectedItem(model.getValueAt(i,2).toString());
    // jTextField4.setText(model.getValueAt(i,4).toString());
 
     }catch (Exception e){System.err.println(e);
     JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());
-    }}*/
+    }}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser5;
     private javax.swing.JLabel jLabel1;

@@ -64,7 +64,7 @@ public class teachermain extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(340, 280, 190, 22);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/net-vibes-icon.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457822710_add-notes.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -73,7 +73,7 @@ public class teachermain extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(100, 140, 130, 128);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/aim-icon.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457823614_about_us.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);

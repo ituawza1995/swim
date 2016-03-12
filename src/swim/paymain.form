@@ -63,7 +63,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/swim/img/Budget-icon.png"/>
+          <Image iconType="3" name="/swim/img/1457823753_vector_65_04.png"/>
         </Property>
       </Properties>
       <Events>
@@ -78,7 +78,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/swim/img/dollar-icon.png"/>
+          <Image iconType="3" name="/swim/img/1457823740_finance_-48.png"/>
         </Property>
       </Properties>
       <Events>

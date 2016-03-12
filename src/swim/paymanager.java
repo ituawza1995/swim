@@ -5,6 +5,7 @@
  */
 package swim;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -43,7 +44,14 @@ public class paymanager extends javax.swing.JFrame {
      try{
         ResultSet rs = cn().executeQuery("Select * from user");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("status")});
+        String a = null;
+        if(rs.getInt("status")==1){
+        a="No Active";
+        }
+        else if(rs.getInt("status")==2){
+        a="Active";
+        }
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),a});
     }
     
     }catch(Exception e){System.err.println(e);}
@@ -59,7 +67,6 @@ public class paymanager extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         textField3 = new java.awt.TextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -72,29 +79,22 @@ public class paymanager extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel10 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 300));
         getContentPane().setLayout(null);
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("LOGOUT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(860, 30, 110, 31);
         getContentPane().add(textField3);
-        textField3.setBounds(170, 30, 131, 20);
+        textField3.setBounds(260, 30, 131, 20);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("รหัสประชาชน");
+        jLabel2.setText("รหัสประชาชน/รหัสนักศึกษา");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(46, 30, 100, 22);
+        jLabel2.setBounds(46, 30, 204, 22);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,6 +108,7 @@ public class paymanager extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(730, 130, 76, 22);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("ชำระ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +116,7 @@ public class paymanager extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(870, 190, 55, 23);
+        jButton2.setBounds(810, 190, 120, 30);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,15 +151,15 @@ public class paymanager extends javax.swing.JFrame {
         jLabel1.setBounds(460, 50, 100, 22);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20", "50" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20", "50", "100" }));
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(830, 130, 56, 25);
+        jComboBox1.setBounds(830, 130, 80, 25);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("บาท");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(900, 130, 34, 20);
+        jLabel6.setBounds(920, 130, 34, 20);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457732752_Refresh.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,32 +170,57 @@ public class paymanager extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(570, 42, 32, 40);
 
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 0, 0));
+        jRadioButton1.setText("ไม่เป็นสมาชิก");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jRadioButton1);
+        jRadioButton1.setBounds(400, 30, 140, 23);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457737890_logout.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(960, 10, 40, 40);
+
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/pexels-photo.jpeg"))); // NOI18N
         getContentPane().add(jLabel7);
         jLabel7.setBounds(0, 0, 1030, 300);
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(690, 250, 0, 0);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-staffmain mm = new staffmain();
-mm.setVisible(true);
-setVisible(false);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-try
+String codeid1 =(String) jComboBox1.getSelectedItem();
+        String date1 = jLabel5.getText();
+        String pay1 = textField3.getText();
+        String radio1= jRadioButton1.getActionCommand();
+        if(pay1.length() == 0 & radio1.isEmpty()){
+            JOptionPane.showMessageDialog(null,"ทำรายการไม่ถูกต้อง");
+            return;
+        }
+        
+        try
      {
+      
          Statement stmt = null; 
          cn c = new cn();
          stmt = c.cn();
-         String codeid =(String) jComboBox1.getSelectedItem();
+         String pay =(String) jComboBox1.getSelectedItem();
         String date = jLabel5.getText();
-        String pay = textField3.getText();
-      String result = "INSERT INTO pay(p_codeuser,p_datetime,p_money)VALUES('"+codeid+"','"+date+"','"+pay+"')";
-      String result2 = "UPDATE user SET status='Active' where u_id = '"+codeid+"'";
+        String codeid = textField3.getText();
+        String name =jLabel9.getText();
+      String result = "INSERT INTO pay(p_codeuser,p_name,p_datetime,p_money)VALUES('"+codeid+"','"+name+"','"+date+"','"+pay+"')";
+      String result2 = "UPDATE user SET status='2' where u_id = '"+codeid+"'";
        stmt.executeUpdate(result);
         stmt.executeUpdate(result2);
 
@@ -213,7 +239,14 @@ JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
     //stm = conn.obtenirconnexion().createStatement();
      ResultSet rs = cn().executeQuery("Select * from user");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("status")});
+        String a = null;
+        if(rs.getInt("status")==1){
+        a="No Active";
+        }
+        else if(rs.getInt("status")==2){
+        a="Active";
+        }
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),a});
     }
     }catch(Exception e){System.err.println(e);}
     jTable2.setModel(model);        // TODO add your handling code here:
@@ -221,11 +254,11 @@ JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-//      try{
-//    int i=jTable2.getSelectedRow();deplace(i);
-//}
-//catch (Exception e){JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());}       // TODO add your handling code here:
-//      // TODO add your handling code here:
+      try{
+    int i=jTable2.getSelectedRow();deplace(i);
+}
+catch (Exception e){JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());}       // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -235,11 +268,31 @@ try{
     //stm = conn.obtenirconnexion().createStatement();
      ResultSet rs = cn().executeQuery("Select * from user");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),rs.getString("status")});
+         String a = null;
+        if(rs.getInt("status")==1){
+        a="No Active";
+        }
+        else if(rs.getInt("status")==2){
+        a="Active";
+        }
+    model.addRow(new Object[]{rs.getString("u_id"),rs.getString("u_name"),rs.getString("u_type"),a});
     }
     }catch(Exception e){System.err.println(e);}
     jTable2.setModel(model);          // TODO add your handling code here:
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+if(jRadioButton1.isSelected()){
+    textField3.setText("ไม่เป็นสมาชิก");
+    jComboBox1.setSelectedItem("50".toString());
+}    // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+staffmain mm = new staffmain();
+mm.setVisible(true);
+setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments
@@ -280,19 +333,30 @@ try{
         });
     }
  private void deplace(int i){
-//   try{
-//    textField1.setText(model.getValueAt(i,0).toString());
-//   // jTextField4.setText(model.getValueAt(i,4).toString());
-//
-//    }catch (Exception e){System.err.println(e);
-//    JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());
-//    }
+   try{
+    jRadioButton1.setSelected(false);
+    textField3.setText(model.getValueAt(i,0).toString());
+    jLabel9.setText(model.getValueAt(i,1).toString());
+    
+    String aa;
+    if(model.getValueAt(i,3).toString()=="Active"){
+    jComboBox1.setSelectedItem("20".toString());
+    }
+    else if(model.getValueAt(i,3).toString()=="No Active"){
+    jComboBox1.setSelectedItem("100".toString());
+    }
+    
+   // jTextField4.setText(model.getValueAt(i,4).toString());
+
+    }catch (Exception e){System.err.println(e);
+    JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());
+    }
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -300,6 +364,8 @@ try{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     private java.awt.TextField textField3;

@@ -66,7 +66,7 @@ public class paymain extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(340, 280, 210, 22);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/Budget-icon.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457823753_vector_65_04.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -75,7 +75,7 @@ public class paymain extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(100, 140, 130, 128);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/dollar-icon.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/1457823740_finance_-48.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -102,13 +102,13 @@ public class paymain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-teacheraddcourse aa = new teacheraddcourse();
+paymanager aa = new paymanager();
 aa.setVisible(true);
 setVisible(false);    // TODO add your handling code here:
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-      teacherdetail te = new teacherdetail();
+      paymanagerstudy te = new paymanagerstudy();
       te.setVisible(true);
 setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jLabel5MouseClicked
