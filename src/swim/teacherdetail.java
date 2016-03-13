@@ -35,7 +35,7 @@ public class teacherdetail extends javax.swing.JFrame {
      try{
 ResultSet rs = cn().executeQuery("Select r_name_user,r_name_trainer,r_codeid,r_tel,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( r_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( r_birthday, '00-%m-%d' ) ) AS age,r_type,r_coures from registerstudy");
     while(rs.next()){
-    model.addRow(new Object[]{rs.getString("r_name_user"),rs.getString("r_name_trainer"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("age")+"  ปี",rs.getString("r_type")
+    model.addRow(new Object[]{rs.getString("r_name_trainer"),rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("age")+"  ปี",rs.getString("r_type")
     ,rs.getString("r_coures")});
     }
     }catch(Exception e){System.err.println(e);}
@@ -109,7 +109,12 @@ ResultSet rs = cn().executeQuery("Select r_name_user,r_name_trainer,r_codeid,r_t
         jTextField1.setBounds(80, 90, 260, 30);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("ค้นหาจากชื่อผู้สอน");
+        jButton1.setText("ค้นหาจากชื่อ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(360, 90, 150, 30);
 
@@ -125,6 +130,19 @@ teachermain te = new teachermain();
 te.setVisible(true);
 setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+String text = jTextField1.getText();
+        try{
+            model.setRowCount(0);
+ResultSet rs = cn().executeQuery("Select r_name_user,r_name_trainer,r_codeid,r_tel,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( r_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( r_birthday, '00-%m-%d' ) ) AS age,r_type,r_coures from registerstudy where r_name_trainer like '%"+text+"%'");
+    while(rs.next()){
+    model.addRow(new Object[]{rs.getString("r_name_trainer"),rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("age")+"  ปี",rs.getString("r_type")
+    ,rs.getString("r_coures")});
+    }
+    }catch(Exception e){System.err.println(e);}
+   jTable1.setModel(model);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

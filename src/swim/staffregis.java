@@ -127,7 +127,7 @@ Statement stmt = null;
         getContentPane().add(textField2);
         textField2.setBounds(120, 160, 220, 25);
 
-        jButton1.setText("สมัครว่ายน้ำ");
+        jButton1.setText("REGISTER");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -143,9 +143,9 @@ Statement stmt = null;
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("รหัสบัตรประชาชน");
+        jLabel1.setText("รหัสบัตร");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 130, 110, 17);
+        jLabel1.setBounds(60, 130, 50, 17);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,10 +208,10 @@ Statement stmt = null;
         jButton3.setBounds(120, 370, 220, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel7.setText("* กรอกได้ทั้งรหัสประชาชนและรหัสนักศึกษา");
+        jLabel7.setForeground(new java.awt.Color(255, 51, 255));
+        jLabel7.setText("* กรอกรหัสบัตรประชาชนหรือรหัสบัตรนักศึกษา");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 20, 330, 22);
+        jLabel7.setBounds(20, 510, 350, 22);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));

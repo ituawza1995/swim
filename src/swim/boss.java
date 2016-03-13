@@ -48,7 +48,7 @@ Statement stmt = null;
     while(rs.next()){
     model.addRow(new Object[]{rs.getString("p_codeuser"),rs.getString("p_name"),rs.getString("p_datetime"),rs.getString("p_money")});
     }
-    ResultSet dd = cn().executeQuery("Select u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type from user");
+    ResultSet dd = cn().executeQuery("Select u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type from user where status=2");
     while(dd.next()){
     model2.addRow(new Object[]{dd.getString("u_name"),dd.getString("age"),dd.getString("u_type")});
     }
@@ -181,11 +181,21 @@ jLabel4.setText(String.valueOf(sum2));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("ค้นหาชื่อ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(240, 20, 83, 30);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton4.setText("ค้นหาเลขสมาชิก");
+        jButton4.setText("ค้นหา");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4);
         jButton4.setBounds(670, 20, 130, 30);
 
@@ -216,7 +226,9 @@ jLabel4.setText(String.valueOf(sum2));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
- try{
+ 
+        
+        try{
          model.setRowCount(0);
 
 Connection con = null;
@@ -256,6 +268,43 @@ m.setVisible(true);
 setVisible(false);// TODO add your handling code here:
             // TODO add your handling code here:
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+String text1 = jTextField2.getText(); 
+String pay1 = jTextField2.getText();
+try{
+    model.setRowCount(0);
+Connection con = null;
+Statement stmt = null;        
+ ResultSet rs = cn().executeQuery("Select * from pay where p_codeuser like '%"+text1+"%' or p_name like '%"+text1+"%' or p_datetime like '%"+text1+"%'" );
+    while(rs.next()){
+    model.addRow(new Object[]{rs.getString("p_codeuser"),rs.getString("p_name"),rs.getString("p_datetime"),rs.getString("p_money")});
+    }
+    ResultSet cc = cn().executeQuery("SELECT SUM(p_money) FROM pay where p_datetime like '%"+pay1+"%'");
+int sum = 0;
+if(cc.next())
+sum = Integer.parseInt(cc.getString(1));
+jLabel1.setText(String.valueOf(sum));
+///////////////////////////////////////////////////////////////////
+    }catch(Exception e){System.err.println(e);}
+    jTable1.setModel(model);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+String text2 = jTextField1.getText();
+ try{
+model2.setRowCount(0);
+Connection con = null;
+Statement stmt = null;       
+    ResultSet dd = cn().executeQuery("Select u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type from user where status=2 and u_name like '%"+text2+"%'");
+    while(dd.next()){
+    model2.addRow(new Object[]{dd.getString("u_name"),dd.getString("age"),dd.getString("u_type")});
+    }
+///////////////////////////////////////////////////////////////////
+    }catch(Exception e){System.err.println(e);}
+     jTable2.setModel(model2);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -9,6 +9,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,6 +34,7 @@ public class staffregiscourse extends javax.swing.JFrame {
  DefaultTableModel model = new DefaultTableModel();
 
     public staffregiscourse() {
+        
         initComponents();
           
         faidcombobox();
@@ -125,9 +128,19 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("รหัสประชาชน");
+        jLabel2.setText("รหัสบัตร");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(19, 80, 110, 22);
+        jLabel2.setBounds(60, 80, 60, 22);
+
+        jTextField2.setToolTipText("* กรอกรหัสบัตรประชาชนหรือรหัสบัตรนักศึกษา");
+        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField2FocusLost(evt);
+            }
+        });
         getContentPane().add(jTextField2);
         jTextField2.setBounds(140, 70, 200, 30);
         getContentPane().add(jTextField3);
@@ -293,13 +306,18 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         jTextField4.setBounds(610, 220, 220, 30);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel14.setText("* กรอกได้ทั้งรหัสประชาชนและรหัสนักศึกษา");
+        jLabel14.setForeground(new java.awt.Color(255, 51, 204));
+        jLabel14.setText("* กรอกรหัสบัตรประชาชนหรือรหัสบัตรนักศึกษา");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(20, 430, 330, 22);
+        jLabel14.setBounds(10, 430, 350, 22);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("ค้นหาจากรหัสบัตร");
+        jButton3.setText("ค้นหา");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(830, 220, 140, 30);
 
@@ -493,6 +511,28 @@ staffregiscourse ss = new  staffregiscourse();
 ss.setVisible(true);
 setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+ String codee = jTextField4.getText();
+        try{
+            model.setRowCount(0);
+ResultSet rs = cnuser().executeQuery("Select r_name_user,r_codeid,r_tel,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( r_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( r_birthday, '00-%m-%d' ) ) AS age,r_type,r_coures,r_name_trainer from registerstudy where r_codeid like '%"+codee+"%' or r_name_user like '%"+codee+"%'");
+    while(rs.next()){
+    model.addRow(new Object[]{rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("age")+"  ปี",rs.getString("r_type")
+    ,rs.getString("r_coures"),rs.getString("r_name_trainer")});
+    }
+    }catch(Exception e){System.err.println(e);}
+   jTable1.setModel(model);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2FocusGained
+
+    private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2FocusLost
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -527,6 +567,7 @@ setVisible(false);// TODO add your handling code here:
                 new staffregiscourse().setVisible(true);
             }
         });
+        
     }
     private void deplace(int i){
    try{
@@ -554,6 +595,7 @@ setVisible(false);// TODO add your handling code here:
     JOptionPane.showMessageDialog(null,"error"+e.getLocalizedMessage());
     }
  }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
