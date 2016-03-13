@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2016 at 06:25 PM
+-- Generation Time: Mar 13, 2016 at 11:02 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `hour_of_course` int(3) NOT NULL,
   `date_time` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `name_trainer` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -49,18 +49,7 @@ CREATE TABLE IF NOT EXISTS `pay` (
   `p_codeuser` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `p_datetime` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `p_money` int(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `play`
---
-
-CREATE TABLE IF NOT EXISTS `play` (
-  `numberr` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -131,17 +120,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`u_id`, `u_name`, `u_type`, `u_birthday`, `status`) VALUES
-('1720900196795', 'ทินกร', 'นักศึกษา', '95-05-14', '2'),
-('2343434343434', '33333', 'บุคคลทั่วไป', '06-03-12', '2'),
-('2348749489893', 'tou', 'นักศึกษา', '03-03-17', '2'),
-('4444444444443', 'porn', 'นักศึกษา', '05-03-21', '2'),
-('564259122', 'tinnakorn', 'นักศึกษา', '95-03-18', '2');
-
---
 -- Indexes for dumped tables
 --
 
@@ -156,12 +134,6 @@ ALTER TABLE `course`
 --
 ALTER TABLE `pay`
   ADD PRIMARY KEY (`p_id`);
-
---
--- Indexes for table `play`
---
-ALTER TABLE `play`
-  ADD PRIMARY KEY (`numberr`);
 
 --
 -- Indexes for table `registerstudy`
@@ -195,17 +167,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
---
--- AUTO_INCREMENT for table `play`
---
-ALTER TABLE `play`
-  MODIFY `numberr` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `staff`
 --
