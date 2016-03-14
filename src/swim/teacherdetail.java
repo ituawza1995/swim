@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import static swim.cn.cnuser;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import static swim.cn.cn;
 
 
@@ -62,6 +65,11 @@ ResultSet rs = cn().executeQuery("Select r_name_user,r_name_trainer,r_codeid,r_t
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jTable1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -143,6 +151,13 @@ ResultSet rs = cn().executeQuery("Select r_name_user,r_name_trainer,r_codeid,r_t
     }catch(Exception e){System.err.println(e);}
    jTable1.setModel(model);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+   int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+
+if(dialogButton == JOptionPane.YES_OPTION) {
+System.exit(0);}else {remove(dialogButton);}   
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import static swim.cn.cn;
 
@@ -86,6 +88,11 @@ public class paymanager extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 300));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
         getContentPane().add(textField3);
         textField3.setBounds(260, 30, 131, 20);
@@ -299,6 +306,13 @@ staffmain mm = new staffmain();
 mm.setVisible(true);
 setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+ int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+
+if(dialogButton == JOptionPane.YES_OPTION) {
+System.exit(0);}else {remove(dialogButton);}   
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

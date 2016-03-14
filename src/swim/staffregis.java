@@ -17,7 +17,9 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import static swim.cn.cn;
 import static swim.cn.cnuser;
@@ -91,6 +93,11 @@ Statement stmt = null;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jTable1.setFont(jTable1.getFont());
@@ -337,7 +344,7 @@ String codeid1 = textField1.getText();
         stmt.executeUpdate(result2);
 
 
-JOptionPane.showMessageDialog(null,"บันทึกแล้ว");
+JOptionPane.showMessageDialog(null,"แก้ไขข้อมูลเสร็จสิ้น");
 
      }
      catch(Exception e)
@@ -366,13 +373,16 @@ Statement stmt = null;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-String codeid1 = textField1.getText();
+
+        int dialogButton = JOptionPane.showConfirmDialog (null, "ต้องการลบข้อมูลใช่หรือไม่ ?","WARNING",JOptionPane.YES_NO_OPTION);
+        String codeid1 = textField1.getText();
         String name1 = textField2.getText();
         String str="0123456789" ;
         if(codeid1.length()==0 || name1.length()==0){
             JOptionPane.showMessageDialog(null,"โปรดเลือกรายการที่จะลบ");
             return;
         }
+         else  if(dialogButton == JOptionPane.YES_OPTION) {
         try{
                 Statement stmt = null; 
             cn c = new cn();
@@ -380,7 +390,9 @@ String codeid1 = textField1.getText();
              stmt.executeUpdate("Delete From user where u_id="+textField1.getText());            
             JOptionPane.showMessageDialog(null,"ลบข้อมูลเรียบร้อย");         
      }catch(Exception e){JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage());}
-                  
+         
+         }
+        
           try{
     model.setRowCount(0);
  Connection con = null;
@@ -399,6 +411,13 @@ Statement stmt = null;
     }catch(Exception e){System.err.println(e);}
     jTable1.setModel(model);           // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+  int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+
+if(dialogButton == JOptionPane.YES_OPTION) {
+System.exit(0);}else {remove(dialogButton);}   // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -8,6 +8,9 @@ package swim;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import static swim.cn.cn;
 
@@ -41,7 +44,7 @@ public class boss extends javax.swing.JFrame {
     model2.addColumn("สถานะ");
       
      try{
-
+String a = jTextField2.getText();
 Connection con = null;
 Statement stmt = null;        
  ResultSet rs = cn().executeQuery("Select * from pay");
@@ -53,7 +56,7 @@ Statement stmt = null;
     model2.addRow(new Object[]{dd.getString("u_name"),dd.getString("age"),dd.getString("u_type")});
     }
     ///////////////ผลรวมใน mysql ////////////////////////////////
-    ResultSet cc = cn().executeQuery("SELECT SUM(p_money) FROM pay");
+    ResultSet cc = cn().executeQuery("SELECT SUM(p_money) FROM pay where p_name like '%"+a+"%'");
 int sum = 0;
 if(cc.next())
 sum = Integer.parseInt(cc.getString(1));
@@ -95,6 +98,11 @@ jLabel4.setText(String.valueOf(sum2));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -276,11 +284,11 @@ try{
     model.setRowCount(0);
 Connection con = null;
 Statement stmt = null;        
- ResultSet rs = cn().executeQuery("Select * from pay where p_codeuser like '%"+text1+"%' or p_name like '%"+text1+"%' or p_datetime like '%"+text1+"%'" );
+ ResultSet rs = cn().executeQuery("Select * from pay where p_codeuser like '%"+text1+"%' or p_name like '%"+text1+"%' or p_datetime like '%"+text1+"%' or p_money like '%"+text1+"%'"  );
     while(rs.next()){
     model.addRow(new Object[]{rs.getString("p_codeuser"),rs.getString("p_name"),rs.getString("p_datetime"),rs.getString("p_money")});
     }
-    ResultSet cc = cn().executeQuery("SELECT SUM(p_money) FROM pay where p_datetime like '%"+pay1+"%'");
+    ResultSet cc = cn().executeQuery("SELECT SUM(p_money) FROM pay where p_datetime like '%"+pay1+"%' or p_name like '%"+pay1+"%' or p_codeuser like '%"+pay1+"%' or p_money like '%"+pay1+"%'");
 int sum = 0;
 if(cc.next())
 sum = Integer.parseInt(cc.getString(1));
@@ -305,6 +313,13 @@ Statement stmt = null;
      jTable2.setModel(model2);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+  int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+
+if(dialogButton == JOptionPane.YES_OPTION) {
+System.exit(0);}else {remove(dialogButton);}      // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

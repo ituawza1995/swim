@@ -22,7 +22,9 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.input.DataFormat;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import static swim.cn.cn;
 import static swim.cn.cnuser;
@@ -116,6 +118,11 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -341,7 +348,7 @@ ResultSet rs2 = cnuser().executeQuery("Select name_trainer,name_course,age_limit
         JOptionPane.showMessageDialog(null,"กรุณากรอกข้อมูลให้ครบถ้วน");
         return;
         }
-        else if(code1.length() != 13){
+        else if(code1.length() != 13 & code1.length() != 9){
         JOptionPane.showMessageDialog(null,"กรุณากรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง");
         return;
         }
@@ -533,6 +540,13 @@ ResultSet rs = cnuser().executeQuery("Select r_name_user,r_codeid,r_tel,DATE_FOR
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2FocusLost
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+   int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+
+if(dialogButton == JOptionPane.YES_OPTION) {
+System.exit(0);}else {remove(dialogButton);}   
+    }//GEN-LAST:event_formWindowClosing
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -20,7 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.input.DataFormat;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import static swim.cn.cn;
 import static swim.cn.cnuser;
@@ -85,6 +87,11 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -270,7 +277,7 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
      }
      catch(Exception e)
      {
-         JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
+         JOptionPane.showMessageDialog(null,"รหัสวิชาซ้ำ");
 
      }
           try{
@@ -293,23 +300,34 @@ ResultSet rs = cn().executeQuery("Select id_course,name_course,age_limit,hour_co
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          try{
+         
+        int dialogButton = JOptionPane.showConfirmDialog (null, "ต้องการลบข้อมูลใช่หรือไม่ ?","WARNING",JOptionPane.YES_NO_OPTION);
+
+
+        String aa = jTextField1.getText();
+         if(aa.length()==0){
+             JOptionPane.showMessageDialog(null,"ทำรายการไม่ถูกต้อง");
+             return;
+         }
+         else  if(dialogButton == JOptionPane.YES_OPTION) {
+        try{
+            
+
                 Statement stmt = null; 
             cn c = new cn();
             stmt = c.cn();   
              stmt.executeUpdate("Delete From course where id_course="+jLabel11.getText());            
             JOptionPane.showMessageDialog(null,"ลบข้อมูล");         
-     }catch(Exception e){JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage());}
-                  
+    }catch(Exception e){JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage());}    
           try{
-              
+             
               model.setRowCount(0);
 ResultSet rs = cnuser().executeQuery("Select id_course,name_course,age_limit,hour_course,hour_of_course,date_time,name_trainer from course");
     while(rs.next()){
     model.addRow(new Object[]{rs.getString("id_course"),rs.getString("name_course"),rs.getString("age_limit"),rs.getString("hour_course"),rs.getString("hour_of_course"),rs.getString("date_time"),rs.getString("name_trainer")});
-    }
+                      }
     
-    }catch(Exception e){System.err.println(e);}
+    }catch(Exception e){System.err.println(e);}}
     jTable1.setModel(model);    
                       
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -331,6 +349,13 @@ setVisible(false);// TODO add your handling code here:
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+ int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+
+if(dialogButton == JOptionPane.YES_OPTION) {
+System.exit(0);}else {remove(dialogButton);}   
+    }//GEN-LAST:event_formWindowClosing
 
     
     public static void main(String args[]) {
