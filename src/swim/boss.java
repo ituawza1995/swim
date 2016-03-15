@@ -246,7 +246,7 @@ Statement stmt = null;
     model.addRow(new Object[]{rs.getString("p_codeuser"),rs.getString("p_name"),rs.getString("p_datetime"),rs.getString("p_money")});
     }
      model2.setRowCount(0);
-    ResultSet dd = cn().executeQuery("Select u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type from user");
+    ResultSet dd = cn().executeQuery("Select u_name,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( u_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( u_birthday, '00-%m-%d' ) ) AS age,u_type from user where status=2");
     while(dd.next()){
     model2.addRow(new Object[]{dd.getString("u_name"),dd.getString("age"),dd.getString("u_type")});
     }

@@ -5,6 +5,7 @@
  */
 package swim;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -58,12 +59,20 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/contact-icon (1).png"))); // NOI18N
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/swim/img/locked-icon (1).png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Welcome to swiming pool");
+
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,8 +140,8 @@ Connection connection;
         return;
         }
         try {
-            connection =  DriverManager.getConnection("jdbc:mysql://localhost/swim" +
-                    "?user=root&password=");
+            connection =  DriverManager.getConnection("jdbc:mysql://192.168.1.1/swim" +
+                    "?user=user&password=123456");
            int u;
             ps = connection.prepareStatement("SELECT * FROM `staff` WHERE `st_login` = ? AND `st_pass` = ?");
             ps.getResultSet();
@@ -173,6 +182,61 @@ else{
 if(dialogButton == JOptionPane.YES_OPTION) {
 System.exit(0);}else {remove(dialogButton);}   
     }//GEN-LAST:event_formWindowClosing
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+ if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+           Connection connection;
+        PreparedStatement ps;
+       
+        String user= jTextField1.getText();
+        String pass1 = jPasswordField1.getText();
+        
+        if(user.length()==0){
+            JOptionPane.showMessageDialog(null,"กรุณากรอกชื่อผู้ใช้");
+        return;
+        }
+        else if(pass1.length()==0)
+        {
+        JOptionPane.showMessageDialog(null,"กรุณากรอกรหัสผ่าน");
+        return;
+        }
+        try {
+            connection =  DriverManager.getConnection("jdbc:mysql://localhost/swim" +
+                    "?user=root&password=");
+           int u;
+            ps = connection.prepareStatement("SELECT * FROM `staff` WHERE `st_login` = ? AND `st_pass` = ?");
+            ps.getResultSet();
+            ps.setString(1,jTextField1.getText());
+            ps.setString(2,String.valueOf(jPasswordField1.getPassword()));
+            ResultSet result = ps.executeQuery();
+            result.next();
+            u=result.getInt("status");
+            if(u==2){
+       staffmain st = new staffmain();
+       st.setVisible(true);
+       setVisible(false);   
+         }
+            else if(u==3){
+       boss b = new boss();
+       b.setVisible(true);
+       setVisible(false);   
+         }
+            else if(u==4){
+       teachermain t = new teachermain();
+       t.setVisible(true);
+       setVisible(false);   
+         }
+else{
+                JOptionPane.showMessageDialog(null,"รหัสผ่านไม่ถูกต้อง");
+            }
+
+        } catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null,"รหัสผ่านไม่ถูกต้อง" ,"", 1);
+
+     }
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1KeyPressed
 
     /**
      * @param args the command line arguments

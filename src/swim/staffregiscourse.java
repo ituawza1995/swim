@@ -469,7 +469,7 @@ String name1 = jTextField1.getText();
         JOptionPane.showMessageDialog(null,"กรุณากรอกข้อมูลให้ครบถ้วน");
         return;
         }
-        else if(code1.length() != 13){
+        else if(code1.length() != 13 & code1.length() != 9){
         JOptionPane.showMessageDialog(null,"กรุณากรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง");
         return;
         }

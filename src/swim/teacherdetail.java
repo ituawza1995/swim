@@ -143,7 +143,7 @@ setVisible(false);// TODO add your handling code here:
 String text = jTextField1.getText();
         try{
             model.setRowCount(0);
-ResultSet rs = cn().executeQuery("Select r_name_user,r_name_trainer,r_codeid,r_tel,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( r_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( r_birthday, '00-%m-%d' ) ) AS age,r_type,r_coures from registerstudy where r_name_trainer like '%"+text+"%'");
+ResultSet rs = cn().executeQuery("Select r_name_user,r_name_trainer,r_codeid,r_tel,DATE_FORMAT( NOW( ) , '%Y' ) - DATE_FORMAT( r_birthday, '%Y' ) - ( DATE_FORMAT( NOW( ) , '00-%m-%d' ) < DATE_FORMAT( r_birthday, '00-%m-%d' ) ) AS age,r_type,r_coures from registerstudy where r_name_trainer like '%"+text+"%' or r_coures like '%"+text+"%'");
     while(rs.next()){
     model.addRow(new Object[]{rs.getString("r_name_trainer"),rs.getString("r_name_user"),rs.getString("r_codeid"),rs.getString("r_tel"),rs.getString("age")+"  Ле",rs.getString("r_type")
     ,rs.getString("r_coures")});
