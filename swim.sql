@@ -1,7 +1,7 @@
 -- phpMyAdmin SQL Dump 
 -- version 4.4.14
 -- http://www.phpmyadmin.net
--- Tinnakorn
+-- Tinnakor
 -- Host: 127.0.0.1
 -- Generation Time: Mar 13, 2016 at 11:02 AM
 -- Server version: 5.6.26
